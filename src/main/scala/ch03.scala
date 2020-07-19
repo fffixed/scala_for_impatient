@@ -15,17 +15,12 @@ object ch03 {
     iterator.find(_._1 < 0)
     val secondIndexOfNegative = iterator.find(_._1 < 0).map(_._2).getOrElse(array.length)
     val indicesForMove = for (i <- secondIndexOfNegative until array.length if array(i) >= 0) yield i
-    indicesForMove.zipWithIndex.foreach { case (i, ii) =>
-      array(secondIndexOfNegative+ii) = array(i)
+    indicesForMove.zipWithIndex.foreach { case (iGlobal, ii) =>
+      array(secondIndexOfNegative + ii) = array(iGlobal)
     }
     val quantityToCut = array.length - (secondIndexOfNegative + indicesForMove.length)
     if (quantityToCut > 0) array.trimEnd(quantityToCut)
     println(array)
-  }
-
-  def main(args: Array[String]): Unit = {
-    //ex08()
-    ex09()
   }
 
 }
