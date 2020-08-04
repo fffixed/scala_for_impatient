@@ -3,7 +3,7 @@ object ch05 {
   /** ex01 */
   class Counter {
     private var value = 0
-    def increment() { if (value == Int.MaxValue) 0 else value += 1 }
+    def increment() { if (value == Int.MaxValue) value = 0 else value += 1 }
     def current = value
   }
 
