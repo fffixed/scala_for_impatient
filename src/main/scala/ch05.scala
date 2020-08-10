@@ -1,3 +1,5 @@
+import scala.beans.BeanProperty
+
 object ch05 {
 
   /** ex01 */
@@ -32,6 +34,22 @@ object ch05 {
     }
   }
 
+  /** ex04 */
+  class Time2(_hours: Int, _minutes: Int) {
+    private val total = _hours * 60 + _minutes
+    if (total >= 1440) throw new Exception("Total number of minutes exceeds maximum for a day")
+    def hours: Int = total / 60
+    def minutes: Int = total % 60
+    def before(other: Time2): Boolean = total < other.total
+  }
+
+  /** ex05 */
+  class Student(@BeanProperty var name: String, @BeanProperty var id: Long)
+
+  /** ex06*/
+  class Person(_age: Int) {
+    var age = if (_age > 0) _age else 0
+  }
 
 
 
