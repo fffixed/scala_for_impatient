@@ -46,11 +46,56 @@ object ch05 {
   /** ex05 */
   class Student(@BeanProperty var name: String, @BeanProperty var id: Long)
 
-  /** ex06*/
+  /** ex06 */
   class Person(_age: Int) {
     var age = if (_age > 0) _age else 0
   }
 
+  /** ex07 */
+  class Person2(name: String) {
+    private[this] val qName = name.split(" ")
+    if (qName.length < 2) throw new Exception("The name must contain first and last names separated by a space")
+    val firstName: String = name.split(" ").head
+    val lastName: String = name.split(" ").tail.head
+  }
 
+  /** ex08 */
+  class Car(val manufacturer: String, val model: String) {
+    private var _yearManufacture: Int = -1
+    def yearManufacture = _yearManufacture
+    var regNumber: String = ""
+
+    def this(manufacturer: String, model: String, yearManufacture: Int) {
+      this(manufacturer, model)
+      this._yearManufacture = yearManufacture
+    }
+    def this(manufacturer: String, model: String, regNumber: String) {
+      this(manufacturer, model)
+      this.regNumber = regNumber
+    }
+    def this(manufacturer: String, model: String, yearManufacture: Int, regNumber: String) {
+      this(manufacturer, model, yearManufacture)
+      this.regNumber = regNumber
+    }
+  }
+
+  /** ex09 */
+  //boredom
+
+  /** ex10 */
+  class Employee {
+    private var _name: String = "John Q. Public"
+    def name = _name
+    var salary: Double = 0.0
+
+    def this(name: String, salary: Double) {
+      this()
+      this._name = name
+      this.salary = salary
+    }
+  }
+
+  //I like the next variant better without explicitly declaring properties:
+  class Employee2(val name: String = "John Q. Public", var salary: Double = 0.0)
 
 }
